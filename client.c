@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
     // if the line ends with a newline, remove it
     int len = strlen(line);
     if (line[len - 1] == '\n') {
-      line[strlen(line) - 1] = '\0';
+      line[len - 1] = '\0';
     }
     if (strncmp(line, "GET ", 4) == 0 && line[4] != '\0') {
       rc = kvs_get(kvs, line + 4, value);
