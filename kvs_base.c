@@ -35,7 +35,7 @@ void kvs_base_free(kvs_base_t** ptr) {
 
 int kvs_base_set(kvs_base_t* kvs, const char* key, const char* value) {
   int rc;
-  char filename[4096];
+  char filename[PATH_MAX];
   strcpy(filename, kvs->directory);
   strcat(filename, "/");
   strcat(filename, key);
@@ -54,7 +54,7 @@ int kvs_base_set(kvs_base_t* kvs, const char* key, const char* value) {
 
 int kvs_base_get(kvs_base_t* kvs, const char* key, char* value) {
   int rc;
-  char filename[4096];
+  char filename[PATH_MAX];
   strcpy(filename, kvs->directory);
   strcat(filename, "/");
   strcat(filename, key);
