@@ -32,8 +32,7 @@ kvs_replacement_policy get_replacement_policy(const char* policy) {
 
 int main(int argc, char** argv) {
   if (argc != 4) {
-    fprintf(stderr, "Usage: %s DIRECTORY POLICY CAPACITY\n",
-            argv[0]);
+    fprintf(stderr, "Usage: %s DIRECTORY POLICY CAPACITY\n", argv[0]);
     return 1;
   }
   int rc;
@@ -56,7 +55,7 @@ int main(int argc, char** argv) {
     if (line[len - 1] == '\n') {
       line[strlen(line) - 1] = '\0';
     }
-    if (strncmp(line, "GET", 3) == 0) {
+    if (strncmp(line, "GET ", 4) == 0 && line[4] != '\0') {
       rc = kvs_get(kvs, line + 4, value);
       if (rc != 0) {
         fprintf(stderr, "GET ERROR\n");
@@ -65,7 +64,7 @@ int main(int argc, char** argv) {
       printf("%s\n", value);
       continue;
     }
-    if (strncmp(line, "SET", 3) == 0) {
+    if (strncmp(line, "SET ", 4) == 0 && line[4] != '\0') {
       int key_length = 0;
       while (line[4 + key_length] != ' ' && line[4 + key_length] != '\0') {
         key_length += 1;
